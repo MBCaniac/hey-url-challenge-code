@@ -12,13 +12,20 @@ class UrlsController < ApplicationController
   end
 
   def create
-    raise 'add some code'
-    # create a new URL record
+    @url = Url.new(url_params)
+    if @url.save
+      redirect_to urls_path
+    end
   end
 
   def show
-    @url = Url.new(short_url: 'ABCDE', original_url: 'http://google.com', created_at: Time.now)
+    #@url = Url.new(short_url: 'ABCDE', original_url: 'http://google.com', created_at: Time.now)
     # implement queries
+
+    @url = Url.find_by(short_url: params[:short_url])
+    render 'errors/404', status: 404 if @url.nil?
+    @url.update_attributes(:clicks_count, @url.clicks_count + 1)
+    
     @daily_clicks = [
       ['1', 13],
       ['2', 2],
@@ -49,4 +56,8 @@ class UrlsController < ApplicationController
     # params[:short_url]
     render plain: 'redirecting to url...'
   end
+
+  private
+  def url_params
+    params.require(:url).permit(:original_url)
 end

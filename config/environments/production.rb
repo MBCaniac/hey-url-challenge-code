@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.configure do
+  config/environment/production.rb
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
