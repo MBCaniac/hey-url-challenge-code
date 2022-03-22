@@ -18,11 +18,11 @@ class Url < ApplicationRecord
 
   def initial_short
     temp = original_url.gsub!(/[^A-Za-z]/, '')
-    @initial_short ||= temp.upcase[temp.length-5, temp.length]
+    @initial_short ||= temp.upcase[temp.length-5, 5]
   end
 
   def additional_short
-    temp = original_url.gsub!(/[^A-Za-z]/, '')
-    @additional_short ||= temp.upcase[temp.length-6, temp.length-1]
+    temp2 = original_url.gsub!(/[^A-Za-z]/, '')
+    @additional_short ||= temp2.upcase[temp2.length-6, 5]
   end
 end

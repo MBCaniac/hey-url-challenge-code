@@ -24,7 +24,7 @@ RSpec.describe Url, type: :model do
     end
 
     it 'validates short URL is uniqe' do
-      url2 = Url.create!(original_url: 'https://www.espn.com', short_url: '')
+      url2 = Url.create!(original_url: 'https://www.espn.com', short_url: 'PNCOM')
       expect(url2.short_url).to equal (url.short_url)
     end
   end
